@@ -5,6 +5,7 @@
   "hubot-google-images",
   "hubot-google-translate",
   "hubot-redis-brain",
+  "hubot-loudbot",
   "hubot-plusplus-slack",
   "hubot-jira-bot"
 ]
