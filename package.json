@@ -5,7 +5,12 @@
   "author": "Joe Drew <joe.drew@ecobee.com>",
   "description": "your helpful pal",
   "dependencies": {
+    "basic-auth": "^2.0.1",
+    "columnify": "^1.5.4",
+    "cron": "^1.7.0",
+    "fuzzy": "^0.1.3",
     "hubot": "^3.2.0",
+    "hubot-conversation": "^1.1.1",
     "hubot-diagnostics": "^1.0.0",
     "hubot-google-images": "^0.2.7",
     "hubot-google-translate": "^0.2.1",
@@ -21,7 +26,10 @@
     "hubot-rules": "^1.0.0",
     "hubot-scripts": "^2.17.2",
     "hubot-shipit": "^0.2.1",
-    "hubot-slack": "^4.6.0"
+    "hubot-slack": "^4.6.0",
+    "ical": "^0.6.0",
+    "icalendar": "^0.7.1",
+    "underscore.string": "^3.3.5"
   },
   "engines": {
     "node": "10.x"
