@@ -7,5 +7,6 @@
   "hubot-redis-brain",
   "hubot-loudbot",
   "hubot-plusplus-slack",
-  "hubot-jira-bot"
+  "hubot-jira-bot",
+  "hubot-rolldice"
 ]

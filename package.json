@@ -17,6 +17,7 @@
     "hubot-plusplus-slack": "git+https://github.com/joedrew/hubot-plusplus.git",
     "hubot-pugme": "^0.1.1",
     "hubot-redis-brain": "^1.0.0",
+    "hubot-rolldice": "^1.3.0",
     "hubot-rules": "^1.0.0",
     "hubot-scripts": "^2.17.2",
     "hubot-shipit": "^0.2.1",
