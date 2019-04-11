@@ -47,13 +47,7 @@ class VacationBot extends Bot {
   }
 
   constructor(robot) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
     this.refreshVacationList = this.refreshVacationList.bind(this);
     this.robot = robot;
     this.commands = [{
@@ -72,7 +66,6 @@ class VacationBot extends Bot {
         return this.robot.logger.info(`Users on vacation: ${users.map(u => `@${u.name}`).join(", ")}`);
       });
     });
-    super(...arguments);
   }
 
   lookupUser(event) {

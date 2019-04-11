@@ -57,13 +57,7 @@ class CalendarBot extends Bot {
   }
 
   constructor(robot) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
     this.robot = robot;
     if (!(this instanceof CalendarBot)) { return new CalendarBot(this.robot); }
     this.requests = {};
@@ -90,7 +84,6 @@ class CalendarBot extends Bot {
       func: this.onTypeButton
     }
     ];
-    super(...arguments);
   }
 
   isAuthorized() { return true; }

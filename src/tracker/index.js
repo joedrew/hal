@@ -42,13 +42,7 @@ class TrackerBot extends Bot {
   }
 
   constructor(robot) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
     this.robot = robot;
     if (!(this instanceof TrackerBot)) { return new TrackerBot(this.robot); }
 
@@ -103,7 +97,6 @@ class TrackerBot extends Bot {
     this.slackButtons = [ this.pingButton, this.deleteButton ];
     this.devices = new Devices(this.robot);
     this.sessions = new Sessions(this.robot);
-    super(...arguments);
   }
 
   isValid(payload) {

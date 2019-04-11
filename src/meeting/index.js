@@ -40,13 +40,8 @@ class MeetingBot extends Bot {
   }
 
   constructor(robot) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
+
     this.robot = robot;
     if (!(this instanceof MeetingBot)) { return new MeetingBot(this.robot); }
     this.commands = [{
@@ -121,7 +116,6 @@ class MeetingBot extends Bot {
     };
 
     this.slackButtons = [ this.fifteenMinsButton, this.thirtyMinsButton, this.oneHourButton, this.imHereButton, this.runningLateButton, this.cantMakeItButton ];
-    super(...arguments);
   }
 
   queueCheckin(meeting, user) {

@@ -28,19 +28,11 @@ const Utils = require("../utils");
 class AnonymousBot extends Bot {
 
   constructor() {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
     this.commands = [{
       regex: /(?:anon|anonymous) #?([a-z0-9_-]{1,21})([^]+)/i,
       name: "askCommand"
-    }
-    ];
-    super(...arguments);
+    }];
   }
 
   askCommand(context) {

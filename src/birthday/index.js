@@ -41,13 +41,7 @@ class BirthdayBot extends Bot {
   }
 
   constructor(robot) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
     this.sendHappyBirthdayMessages = this.sendHappyBirthdayMessages.bind(this);
     this.refreshBirthdayList = this.refreshBirthdayList.bind(this);
     this.robot = robot;
@@ -59,7 +53,6 @@ class BirthdayBot extends Bot {
     this.robot.brain.once('loaded', () => {
       return new cronJob( "00 00 10 * * *", this.sendHappyBirthdayMessages, null, true);
     });
-    super(...arguments);
   }
 
   lookupUser(event) {

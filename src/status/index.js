@@ -48,13 +48,8 @@ class StatusBot extends Bot {
   }
 
   constructor(robot) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
+
     this.robot = robot;
     this.commands = [{
       regex: /status$/i,
@@ -103,7 +98,6 @@ class StatusBot extends Bot {
       setInterval(this.refreshComponents.bind(this), 60*1000); // Every 1 minute
       return this.refreshComponents();
     });
-    super(...arguments);
   }
 
   processNextComponent(components) {

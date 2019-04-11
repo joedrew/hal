@@ -42,13 +42,8 @@ const Utils = require("../utils");
 class TopicBot extends Bot {
 
   constructor(robot) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
+
     this.robot = robot;
     this.commands = [{
       regex: /topic refresh/,
@@ -59,7 +54,6 @@ class TopicBot extends Bot {
       name: "topicChangeCommand"
     }
     ];
-    super(...arguments);
 
     this.robot.brain.once('loaded', () => {
       new cronJob(Config.topic.cronTime, this.updateTopics.bind(this), null, true);

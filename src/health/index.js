@@ -33,13 +33,7 @@ class HealthBot extends Bot {
   }
 
   constructor(robot) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { return this; }).toString();
-      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
-      eval(`${thisName} = this;`);
-    }
+    super(...arguments);
     this.robot = robot;
     if (!(this instanceof HealthBot)) { return new HealthBot(this.robot); }
     this.endpoints = [{
@@ -48,7 +42,6 @@ class HealthBot extends Bot {
       func: this.getHealthz
     }
     ];
-    super(...arguments);
   }
 
   isAuthorized() { return true; }
