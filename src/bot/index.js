@@ -12,17 +12,12 @@ const _ = require("underscore");
 const Utils = require("../utils");
 
 class Bot {
-  static initClass() {
-  
-    this.prototype.commands = [];
-  }
-
-  constructor(robot) {
+  constructor(robot, commands) {
     this.robot = robot;
     if (this._initializers) { for (let cb of Array.from(this._initializers)) { cb.call(this); } }
     if (!Utils.robot) { Utils.robot = this.robot; }
 
-    for (let command of Array.from(this.commands)) {
+    for (let command of Array.from(commands)) {
       Utils.robot.logger.debug("Registering Command:", command);
 
       if (command.listen) {
@@ -169,7 +164,6 @@ class Bot {
     return this;
   }
 }
-Bot.initClass();
 
 module.exports = Bot;
 

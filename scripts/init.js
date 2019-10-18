@@ -18,18 +18,7 @@
 require('events').EventEmitter.prototype._maxListeners = 20; // Raise the max event emitter limit
 
 const bots = {
-  Anonymous: require("../src/anonymous"),
-  Birthday: require("../src/birthday"),
-  Calendar: require("../src/calendar"),
-  Die: require("../src/die"),
-  Fuzzy: require("../src/fuzzy"),
-  Health: require("../src/health"),
-  Idea: require("../src/idea"),
-  Meeting: require("../src/meeting"),
-  Status: require("../src/status"),
-  Topic: require("../src/topic"),
-  Tracker: require("../src/tracker"),
-  Vacation: require("../src/vacation")
+  Build: require("../src/build"),
 };
 
 module.exports = function(robot) {
