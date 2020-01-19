@@ -48,7 +48,7 @@ class Bot
 
       payload.text = " " if payload.attachments?.length > 0 and payload.text.length is 0
       if payload.text.length > 0
-        @robot.adapter.send 
+        @robot.adapter.send
           room: context.message.room
           message: thread_ts: context.message.thread_ts
         , payload
@@ -78,7 +78,7 @@ class Bot
 
   hear: (regex, usergroup=null, cb) ->
     @robot.hear regex, (context) =>
-      @authorize context, usergroup
+      @authorize(context, usergroup)
       .then =>
         cb context
       .catch (error) =>
@@ -88,7 +88,7 @@ class Bot
 
   respond: (regex, usergroup=null, cb) ->
     @robot.respond regex, (context) =>
-      @authorize context, usergroup
+      @authorize(context, usergroup)
       .then =>
         cb context
       .catch (error) =>
