@@ -51,13 +51,16 @@ class Utils
       normalized = context
     normalized
 
+  @getRoomById: (roomId) ->
+    room = @robot.adapter.client.rtm.dataStore.getChannelOrGroupByName roomId
+    room = @robot.adapter.client.rtm.dataStore.getChannelGroupOrDMById roomId unless room
+    room = @robot.adapter.client.rtm.dataStore.getDMByUserId roomId unless room
+    room = @robot.adapter.client.rtm.dataStore.getDMByName roomId unless room
+    room
+
   @getRoom: (context) ->
     context = @normalizeContext context
-    room = @robot.adapter.client.rtm.dataStore.getChannelOrGroupByName context.message.room
-    room = @robot.adapter.client.rtm.dataStore.getChannelGroupOrDMById context.message.room unless room
-    room = @robot.adapter.client.rtm.dataStore.getDMByUserId context.message.room unless room
-    room = @robot.adapter.client.rtm.dataStore.getDMByName context.message.room unless room
-    room
+    getRoomById(context.message.room)
 
   @getRoomName: (context) ->
     room = @getRoom context

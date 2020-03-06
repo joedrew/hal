@@ -13,6 +13,7 @@ require('events').EventEmitter.prototype._maxListeners = 20; # Raise the max eve
 
 bots =
   Build: require "../src/build"
+  Fuzzy: require "../src/fuzzy"
 
 module.exports = (robot) ->
   robot.logger.debug "Booting bots..."
