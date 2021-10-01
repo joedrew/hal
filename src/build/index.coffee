@@ -51,7 +51,7 @@ class BuildBot extends Bot
           ]
         ,
           fallback: "App store build for branch #{branch}"
-          thumb_url: "https://pbs.twimg.com/profile_images/1039432724120051712/wFlFGsF3_400x400.jpg"
+          thumb_url: "https://www.bitrise.io/assets/placeholders/default-app-icon.png"
           title: "App Store build for #{branch}"
           title_link: json.build_url
           color: "#760FC3"

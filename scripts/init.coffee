@@ -12,6 +12,7 @@
 require('events').EventEmitter.prototype._maxListeners = 20; # Raise the max event emitter limit
 
 bots =
+  Branch: require "../src/branch"
   Build: require "../src/build"
   DotCom: require "../src/dotcom"
   Fuzzy: require "../src/fuzzy"
