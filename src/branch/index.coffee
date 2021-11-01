@@ -6,13 +6,14 @@
 #   vince.p
 
 Bot = require "../bot"
+Config = require "../config"
 Utils = require "../utils"
 
 branch="develop"
 iosBranchSlug = "5755ea6a6cd9ac0c"
-iosBranchBuildTriggerToken = "Cbbb5M7HUW5CTmdhLG6lbg"
+iosBranchBuildTriggerToken = Config.bitrise.token
 iosBranchWorkflow = "branch_release"
-bitriseURL = "https://app.bitrise.io/app/#{iosBranchSlug}/build/start.json"
+bitriseURL = "https://api.bitrise.io/v0.1/apps/#{iosBranchSlug}/builds"
 
 class BranchBot extends Bot
 
@@ -27,14 +28,15 @@ class BranchBot extends Bot
     buildData = JSON.stringify
       hook_info:
         type: "bitrise",
-        build_trigger_token: iosBranchBuildTriggerToken
       build_params:
         branch: branch,
         workflow_id: iosBranchWorkflow
 
     Utils.fetch bitriseURL,
       method: 'post',
-      body: buildData
+      body: buildData,
+      headers:
+        "Authorization": iosBranchBuildTriggerToken,
     .then (json) =>
       @send context,
         text: "You got it! Queued `#{iosBranchWorkflow}` build for branch #{branch}"

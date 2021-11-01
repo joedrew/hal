@@ -6,12 +6,13 @@
 #   joedrew
 
 Bot = require "../bot"
+Config = require "../config"
 Utils = require "../utils"
 
 iosReleaseSlug = "5755ea6a6cd9ac0c"
-iosReleaseBuildTriggerToken = "Cbbb5M7HUW5CTmdhLG6lbg"
+iosReleaseBuildTriggerToken = Config.bitrise.token
 iosReleaseWorkflow = "appstore"
-bitriseURL = "https://app.bitrise.io/app/#{iosReleaseSlug}/build/start.json"
+bitriseURL = "https://api.bitrise.io/v0.1/apps/#{iosReleaseSlug}/builds"
 
 class BuildBot extends Bot
 
@@ -27,14 +28,15 @@ class BuildBot extends Bot
     buildData = JSON.stringify
       hook_info:
         type: "bitrise",
-        build_trigger_token: iosReleaseBuildTriggerToken
       build_params:
         branch: branch,
         workflow_id: iosReleaseWorkflow
 
     Utils.fetch bitriseURL,
       method: 'post',
-      body: buildData
+      body: buildData,
+      headers:
+        "Authorization": iosReleaseBuildTriggerToken,
     .then (json) =>
       @send context,
         text: "You got it! Queued `appstore` build for branch #{branch}"
