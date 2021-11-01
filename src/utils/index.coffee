@@ -5,6 +5,7 @@ icalendar = require "icalendar"
 Fuse = require 'fuse.js'
 Config = require "../config"
 StatsD = require('node-dogstatsd').StatsD
+util = require "util"
 
 if Config.stats.host and Config.stats.port
   c = new StatsD Config.stats.host, Config.stats.port
@@ -20,6 +21,7 @@ class Utils
     options = _(options).extend opts
 
     Utils.robot.logger.debug "Fetching: #{url}"
+    Utils.robot.logger.debug "Opts: #{util.inspect(options, true, 3)}"
     fetch(url,options).then (response) ->
       if response.status >= 200 and response.status < 300
         return response

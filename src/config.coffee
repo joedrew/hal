@@ -70,4 +70,7 @@ class Config
     duplicateResolution: process.env.HUBOT_ICAL_DUPLICATE_RESOLVER || "OVERRIDE: "
     regex: "(__LABEL__:(?:[^|]*)\\s*\\|\\s*)?(.*)"
 
+  @bitrise:
+    token: process.env.HUBOT_BITRISE_API_TOKEN
+
 module.exports = Config
