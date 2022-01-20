@@ -64,7 +64,7 @@ class FuzzyBot extends Bot
       room: room
       attachmentProperty: property
     @fuzzies.push(fuzzy)
-    @save
+    @save()
 
     roomName = Utils.getRoomById(room).name
 
